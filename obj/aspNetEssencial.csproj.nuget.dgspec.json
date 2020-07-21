@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/felipelx/Desktop/workspace/C#/aspNetEssencial/aspNetEssencial.csproj": {}
+  },
+  "projects": {
+    "/home/felipelx/Desktop/workspace/C#/aspNetEssencial/aspNetEssencial.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/felipelx/Desktop/workspace/C#/aspNetEssencial/aspNetEssencial.csproj",
+        "projectName": "aspNetEssencial",
+        "projectPath": "/home/felipelx/Desktop/workspace/C#/aspNetEssencial/aspNetEssencial.csproj",
+        "packagesPath": "/home/felipelx/.nuget/packages/",
+        "outputPath": "/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/felipelx/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

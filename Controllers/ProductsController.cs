@@ -20,16 +20,16 @@ namespace aspNetEssencial.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> Get()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAsync()
         {
-            return _context.Products.AsNoTracking().ToList();
+            return await _context.Products.AsNoTracking().ToListAsync();
         }
 
         [HttpGet("{id}", Name="GetProduct")]
-        public ActionResult<Product> Get(int id)
+        public async Task<ActionResult<Product>> GetAsync(int id)
         {
-            var product = _context.Products.AsNoTracking()
-                .FirstOrDefault(p => p.ProductId == id);
+            var product = await _context.Products.AsNoTracking()
+                .FirstOrDefaultAsync(p => p.ProductId == id);
             if(product == null) 
             {
                 return NotFound();

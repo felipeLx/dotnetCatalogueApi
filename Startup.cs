@@ -1,6 +1,7 @@
-using ApiCatalogo.Extensions;
-using ApiCatalogo.Filters;
-using APICatalogo.Context;
+using aspNetEssencial.Extensions;
+using aspNetEssencial.Filters;
+using aspNetEssencial.Context;
+using aspNetEssencial.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace APICatalogo
+namespace aspNetEssencial
 {
     public class Startup
     {
@@ -24,6 +25,10 @@ namespace APICatalogo
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddScoped<ApiLoggingFilter>();
+
+            // Add scope of the Unit Of Work to the service
+            // services.AddScoped(IUOWork, UOWork)();
+            // Injection of _context into the service: persistense in the database
             services.AddDbContext<AppDbContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 

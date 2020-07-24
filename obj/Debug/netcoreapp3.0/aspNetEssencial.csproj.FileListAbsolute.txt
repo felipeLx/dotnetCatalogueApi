@@ -1,0 +1,5 @@
+/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/Debug/netcoreapp3.0/aspNetEssencial.csprojAssemblyReference.cache
+/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/Debug/netcoreapp3.0/aspNetEssencial.AssemblyInfoInputs.cache
+/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/Debug/netcoreapp3.0/aspNetEssencial.AssemblyInfo.cs
+/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/Debug/netcoreapp3.0/aspNetEssencial.csproj.CoreCompileInputs.cache
+/home/felipelx/Desktop/workspace/C#/aspNetEssencial/obj/Debug/netcoreapp3.0/aspNetEssencial.MvcApplicationPartsAssemblyInfo.cache

@@ -1,10 +1,10 @@
-﻿using ApiCatalogo.Models;
+﻿using aspNetEssencial.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 
-namespace ApiCatalogo.Extensions
+namespace aspNetEssencial.Extensions
 {
     public static class ApiExceptionMiddlewareExtensions
     {

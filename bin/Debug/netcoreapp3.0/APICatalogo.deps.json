@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v3.0": {
-      "ApiCatalogo/1.0.0": {
+      "AspNetEssencial/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.0.0-preview5-19227-01",
           "Microsoft.EntityFrameworkCore": "2.2.4",
@@ -310,10 +310,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "ApiCatalogo.dll": {}
+          "AspNetEssencial.dll": {}
         },
         "compile": {
-          "ApiCatalogo.dll": {}
+          "AspNetEssencial.dll": {}
         }
       },
       "Microsoft.AspNetCore.JsonPatch/3.0.0-preview5-19227-01": {
@@ -3456,7 +3456,7 @@
     }
   },
   "libraries": {
-    "ApiCatalogo/1.0.0": {
+    "AspNetEssencial/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

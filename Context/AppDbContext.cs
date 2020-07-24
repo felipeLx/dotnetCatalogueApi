@@ -1,9 +1,9 @@
-﻿using APICatalogo.Models;
+﻿using aspNetEssencial.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace APICatalogo.Context
+namespace aspNetEssencial.Context
 {
     public class AppDbContext : DbContext
     {
@@ -13,8 +13,8 @@ namespace APICatalogo.Context
         public AppDbContext()
         { }
 
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

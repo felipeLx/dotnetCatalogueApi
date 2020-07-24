@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ApiCatalogo.Models
+namespace aspNetEssencial.Models
 {
     public class ErrorDetails
     {

@@ -1,4 +1,4 @@
-using aspNetEssencial.Context;
+using aspNetEssencial.Repository;
 using aspNetEssencial.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,23 +13,22 @@ namespace aspNetEssencial.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public CategoriesController(AppDbContext context)
+        private readonly IUOWork _uof;
+        public CategoriesController(IUOWork context)
         {
-            _context = context;
+            _uof = context;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-            return _context.Categories.AsNoTracking().ToList();
+            return _uof.CategoryRepository.Get().ToList();
         }
 
         [HttpGet("{id}", Name="GetCategory")]
         public ActionResult<Category> Get(int id)
         {
-            var category = _context.Categories.AsNoTracking()
-                .FirstOrDefault(p => p.CategoryId == id);
+            var category = _uof.CategoryRepository.GetById(c => c.CategoryId == id);
             if(category == null) 
             {
                 return NotFound();
@@ -40,8 +39,8 @@ namespace aspNetEssencial.Controllers
         [HttpPost]
         public ActionResult Post([FromBody]Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            _uof.CategoryRepository.Add(category);
+            _uof.Commit();
             
             return new CreatedAtRouteResult("GetCategory",
                 new { id= category.CategoryId }, category);
@@ -55,30 +54,30 @@ namespace aspNetEssencial.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-            _context.SaveChanges();
+            _uof.CategoryRepository.Update(category);
+            _uof.Commit();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public ActionResult<Category> Delete(int id)
         {
-            var category = _context.Categories.FirstOrDefault(p => p.CategoryId == id);
+            var category = _uof.CategoryRepository.GetById(c => c.CategoryId == id);
 
             if(category == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _uof.CategoryRepository.Delete(category);
+            _uof.Commit();
             return category;
         }
 
         [HttpGet("products")]
         public ActionResult<IEnumerable<Category>> GetCategories()
         {
-            return _context.Categories.Include(cat => cat.Products).ToList();
+            return _uof.CategoryRepository.GetCategoryProducts().ToList();
         }
     }
 }

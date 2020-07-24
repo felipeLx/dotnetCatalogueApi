@@ -1,4 +1,4 @@
-using aspNetEssencial.Context;
+using aspNetEssencial.Repository;
 using aspNetEssencial.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,23 +13,22 @@ namespace aspNetEssencial.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public ProductsController(AppDbContext context)
+        private IUOWork _uof;
+        public ProductsController(IUOWork uof)
         {
-            _context = context;
+            _uof = uof;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAsync()
+        public ActionResult<IEnumerable<Product>> Get()
         {
-            return await _context.Products.AsNoTracking().ToListAsync();
+            return _uof.ProductRepository.Get().ToList();
         }
 
         [HttpGet("{id}", Name="GetProduct")]
-        public async Task<ActionResult<Product>> GetAsync(int id)
+        public ActionResult<Product> Get(int id)
         {
-            var product = await _context.Products.AsNoTracking()
-                .FirstOrDefaultAsync(p => p.ProductId == id);
+            var product = _uof.ProductRepository.GetById(p => p.ProductId == id);
             if(product == null) 
             {
                 return NotFound();
@@ -40,8 +39,8 @@ namespace aspNetEssencial.Controllers
         [HttpPost]
         public ActionResult Post([FromBody]Product product)
         {
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            _uof.ProductRepository.Add(product);
+            _uof.Commit();
             
             return new CreatedAtRouteResult("GetProduct",
                 new { id= product.ProductId }, product);
@@ -55,24 +54,30 @@ namespace aspNetEssencial.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
-            _context.SaveChanges();
+            _uof.ProductRepository.Update(product);
+            _uof.Commit();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public ActionResult<Product> Delete(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+            var product = _uof.ProductRepository.GetById(p => p.ProductId == id);
 
             if(product == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            _uof.ProductRepository.Delete(product);
+            _uof.Commit();
             return product;
+        }
+
+        [HttpGet("lessprice")]
+        public ActionResult<IEnumerable<Product>> GetProductByPrice()
+        {
+            return _uof.ProductRepository.GetProductByPrice().ToList();
         }
     }
 }
